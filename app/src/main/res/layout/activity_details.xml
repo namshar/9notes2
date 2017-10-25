@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.ansh.a9notes.Details">
+    <EditText
+        android:id="@+id/titleIDactivity2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Title"
+        android:textColor="#d84315"/>
+    <EditText
+        android:id="@+id/editnotelayoutIDactivity2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark"
+        android:hint="Whats in your mind??"
+        android:textColorHighlight="#f2ff00"
+        android:textSize="20dp"
+        android:focusedByDefault="true"
+        android:textColor="#ffffff"
+
+        android:gravity="top"/>
+
+</LinearLayout>
