@@ -1,6 +1,9 @@
 package com.example.ansh.a9notes.Rvfiles;
 
 import android.app.Activity;
+import android.app.Application;
+import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,57 +11,60 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.ansh.a9notes.DBEntryStructure;
 import com.example.ansh.a9notes.NoteActivity;
 import com.example.ansh.a9notes.R;
+import com.example.ansh.a9notes.entryViewmodel;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by ansh on 16/10/17.
  */
 
 
-public class RvAdapter extends RecyclerView.Adapter<RvHolder>{
-    private ArrayList<RvData> rvDataArrayList;
+public class RvAdapter extends RecyclerView.Adapter<RvHolder> {
+    private List<DBEntryStructure> rvDataArr;
 
+    public RvAdapter(List<DBEntryStructure> rvDataArr) {
+        this.rvDataArr = rvDataArr;
+    }
 
-
-    public RvAdapter(ArrayList<RvData> rvDataArrayList) {
-        this.rvDataArrayList = rvDataArrayList;
-    }//constructor
+    //constructor
 
     @Override
     public RvHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.main_rv_eachitemlayout,null,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_rv_eachitemlayout,
+                null, false);
         return new RvHolder(v);
     }
 
     @Override
     public void onBindViewHolder(RvHolder holder, final int position) {
-        TextView titlenote=holder.mainrvnotetitle;
+        final TextView titlenote = holder.mainrvnotetitle;
 
-        titlenote.setText(rvDataArrayList.get(position).getTitle());
+        if (rvDataArr.get(position) == null) {
+            titlenote.setText("loading...");
+        } else {
+            titlenote.setText(rvDataArr.get(position).getTitle());
+        }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
 
-
-
-            //FIXME:PUT THIS IN HOLDER
             @Override
             public void onClick(View v) {
 
-
-               //runintent openOldNote
-                Intent openOldNote=new Intent(v.getContext(),NoteActivity.class);
-                openOldNote.putExtra("TITLE",rvDataArrayList.get(position).getTitle());
-                openOldNote.putExtra("NOTE",rvDataArrayList.get(position).getNote());
+                //runintent openOldNote
+                Intent openOldNote = new Intent(v.getContext(), NoteActivity.class);
+                openOldNote.putExtra("NOTETYPE",-1);
+                openOldNote.putExtra("TITLE",rvDataArr.get(position).getTitle());
+                openOldNote.putExtra("DATA",rvDataArr.get(position).getData());
 
                 v.getContext().startActivity(openOldNote);
 
 
             }
         });
-        //FIXME======================================================================
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
@@ -73,23 +79,18 @@ public class RvAdapter extends RecyclerView.Adapter<RvHolder>{
 
     @Override
     public int getItemCount() {
-        return rvDataArrayList.size();
-        //
-        //
-        //
-        //
+        return rvDataArr.size();
+
     }
 
-    public ArrayList<RvData> getRvDataArrayList() {
-
-        return rvDataArrayList;
+    public List<DBEntryStructure> getRvDataArr() {
+        return rvDataArr;
     }
 
-    public void setRvDataArrayList(ArrayList<RvData> rvDataArrayList) {
-        this.rvDataArrayList = rvDataArrayList;
+    public void setRvDataArr(List<DBEntryStructure> rvDataArr) {
+        this.rvDataArr = rvDataArr;
+        notifyDataSetChanged();
     }
-
-
 }
 
 

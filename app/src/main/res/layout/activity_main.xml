@@ -5,9 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.ansh.a9notes.MainActivity">
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fablayoutid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="15dp"
+        android:src="@drawable/add"
+        app:fabSize="auto" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/mainRVlayoutID"
-
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
@@ -15,13 +24,5 @@
 
 
     </android.support.v7.widget.RecyclerView>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fablayoutid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/add"
-        android:scaleType="center"
-        android:layout_gravity="bottom|right"/>
 
 </FrameLayout>
