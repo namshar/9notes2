@@ -12,41 +12,40 @@ import android.arch.persistence.room.PrimaryKey;
 public class DBEntryStructure {
 
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "position")
-    int pos;
+    private int pos;
 
     @ColumnInfo(name = "title")
-    String title;
+    private String title;
 
     @ColumnInfo(name = "data")
-    String data;
+    private String data;
 
     public DBEntryStructure() {
     }
 
-    public DBEntryStructure(int pos, String title, String data) {
-        this.pos = pos;
+    public DBEntryStructure( String title, String data) {
         this.title = title;
         this.data = data;
     }
 
-    public int getPos() {
-        return pos;
-    }
     public String getTitle() {
         return title;
     }
     public String getData() {
         return data;
     }
-
-    public void setPos(int pos) {
-        this.pos = pos;
+    public int getPos() {
+        return pos;
     }
+
     public void setTitle(String title) {
         this.title = title;
     }
     public void setData(String data) {
         this.data = data;
+    }
+    public void setPos(int pos) {
+        this.pos = pos;
     }
 
     @Override
@@ -57,4 +56,6 @@ public class DBEntryStructure {
                 ", data='" + data + '\'' +
                 '}';
     }
+
+
 }
